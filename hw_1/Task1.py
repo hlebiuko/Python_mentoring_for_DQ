@@ -18,10 +18,10 @@ odd_counter = 0
 
 for i, item in enumerate(lst):
     if i % 2 == 0:
-        average_odd += lst[i]
+        average_odd += item
         odd_counter += 1
     else:
-        average_even += lst[i]
+        average_even += item
         even_counter += 1
 
 average_even /= even_counter
