@@ -20,7 +20,7 @@ def dict_sort(my_dict: dict) -> dict:  # function that gets dict as argument and
 
 # 'while' loop was selected because of by using 'for' loop may cause loss duplicates of keys f.e. if generated value for
 # amount of keys was 26, and we will have duplicates in keys value (2 times 'a' char) - we will have fewer keys in total
-while True:  # Loop for filling in list by dicts
+for i in range(number_of_dicts):
     temp_dict = {}  # initialization temp dict variable to collect generated values
     number_of_pairs_in_dict = random.randint(3, 26)  # initialization and generating value for number of pairs in dict
     while True:  # Loop for filling in the dict
@@ -30,9 +30,6 @@ while True:  # Loop for filling in list by dicts
             break  # Closing the loop filling the dict
     temp_dict = dict_sort(temp_dict)  # Sorting generated dict by function dict_sort
     list_of_dicts.append(temp_dict)  # Adding generated dict to the list of dicts
-
-    if len(list_of_dicts) >= number_of_dicts:  # Check length of list with dicts is less than required
-        break  # break for loop when list will be filled up appropriate count times
 
 # Task 2 Part 2
 # 2. get previously generated list of dicts and create one common dict:
