@@ -36,7 +36,7 @@ for x in range(len(input_string) - 2):
     if flag_to_change_case and input_string[x].isalpha():
         input_string = input_string[0:x] + input_string[x].swapcase() + input_string[x + 1: len(input_string)]
         flag_to_change_case = False
-    if input_string[x] in ['.', '\n', '\t']:
+    if input_string[x] in ['.', '\n', '\t', '?', '!']:
         flag_to_change_case = True
 
 # creating string with last words of each sentence
