@@ -22,3 +22,14 @@ class Record:
     def write_to_file(self):
         FileWriter.write_string_to_the_file(self.convert_to_string())
 
+    # function to compare 2 provided objects by class and attributes
+    @staticmethod
+    def is_equal(object_1, object_2):
+        if object_1.__class__ != object_2.__class__:    # if objects doesn't have the same class
+            return False    # they are not equal
+        # if dict of attributes and it's values are equal for 2 objects
+        if object_1.__dict__.items() == object_2.__dict__.items():
+            return True     # return true
+        else:           # if not
+            return False    # return false
+

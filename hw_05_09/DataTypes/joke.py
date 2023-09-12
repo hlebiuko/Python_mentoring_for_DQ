@@ -19,5 +19,4 @@ class Joke(Record):
         if len(joke_author) == 0:
             joke_author = 'Unknown'
         joke_obj = Joke(joke_text, joke_author)
-        # calling the method of the Record class to write object to the file
         joke_obj.write_to_file()
