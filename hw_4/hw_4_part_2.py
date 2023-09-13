@@ -32,8 +32,7 @@ def create_sentence_of_the_last_words(current_string: str) -> str:
     string_with_last_words = ''
     for sentence in sentences:
         split_sentence = sentence.split(" ")
-        string_with_last_words += split_sentence[len(split_sentence) - 1][
-                                  :len(split_sentence[len(split_sentence) - 1]) - 1] + ' '
+        string_with_last_words += split_sentence[-1][:-1] + ' '
     return string_with_last_words[:len(string_with_last_words) - 1] + '.'
 
 
