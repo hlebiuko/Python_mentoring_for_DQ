@@ -30,7 +30,7 @@ def generating_of_dictionary_with_random_values() -> dict:
 
 
 # Function to generate list of dicts, gets int value as amount of dicts to append, as default gets random value
-def generating_list_of_dicts_with_random_values(number_of_dicts_in_list=random.randint(3, 10)) -> list:
+def generate_random_dict(number_of_dicts_in_list=random.randint(3, 10)) -> list:
     list_of_dicts = []  # initialization of variable to collect generated dictionaries
     for x in range(number_of_dicts_in_list):
         list_of_dicts.append(generating_of_dictionary_with_random_values())
@@ -39,7 +39,7 @@ def generating_list_of_dicts_with_random_values(number_of_dicts_in_list=random.r
 
 # Using defaultdict to get dict with all the keys and list of all value for this key
 # It was used to find elements, that has the greatest values at first appearance for not to lose the data
-def get_dict_will_all_values_from_list_of_dict(list_of_dicts: list) -> defaultdict:
+def get_dict_with_all_values_from_list_of_dict(list_of_dicts: list) -> defaultdict:
     dict_with_all_values = defaultdict(list)
     for sub_dict in list_of_dicts:  # Iterate threw the list of dicts
         for key in sub_dict:  # Iterate threw the keys of iterated dict
@@ -56,7 +56,7 @@ def get_dict_will_all_values_from_list_of_dict(list_of_dicts: list) -> defaultdi
 
 
 # Function to compress list of dicts to one common dict
-def compressing_list_of_dicts_to_one_dict(list_of_dicts: list) -> dict:
+def compress_dict_list_to_dict(list_of_dicts: list) -> dict:
     new_dict = {}  # Initialization new dict variable
     dict_for_changed_elements = {}  # Initialization dict variable for changed elements (key = key, value = dict number)
     dict_with_key_count = {}
@@ -92,4 +92,4 @@ def compressing_list_of_dicts_to_one_dict(list_of_dicts: list) -> dict:
     return dict_sort(new_final_dict)  # return sorted final dict
 
 
-print(compressing_list_of_dicts_to_one_dict(generating_list_of_dicts_with_random_values()))
+print(compress_dict_list_to_dict(generate_random_dict()))
