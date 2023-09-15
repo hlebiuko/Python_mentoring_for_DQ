@@ -1,4 +1,4 @@
-from hw_05_09.config import title_length, separator
+from hw_05_09.config import TITLE_LENGTH, SEPARATOR
 from hw_05_09.OperationsWithFiles.fileWriter import FileWriter
 
 
@@ -10,13 +10,13 @@ class Record:
 
     @staticmethod
     def generate_header(header_name):
-        return str(header_name + '-' * (title_length - len(header_name)))
+        return str(header_name + '-' * (TITLE_LENGTH - len(header_name)))
 
     def convert_to_string(self):
         record_in_string = ''
         for key, value in self.__dict__.items():
             record_in_string += value + '\n'
-        record_in_string += separator
+        record_in_string += SEPARATOR
         return record_in_string
 
     def write_to_file(self):
