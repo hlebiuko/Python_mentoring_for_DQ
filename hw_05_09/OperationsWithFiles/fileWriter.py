@@ -1,13 +1,13 @@
 import os.path
 
-from hw_05_09.config import file_to_write_path
+from hw_05_09.config import FILE_TO_WRITE_PATH
 
 
 class FileWriter:
 
     # function to detect does the provided file exist
     @staticmethod
-    def write_string_to_the_file(string_to_write: str, file_path=file_to_write_path):
+    def write_string_to_the_file(string_to_write: str, file_path=FILE_TO_WRITE_PATH):
         try:
             # check if file exists - open to write
             if os.path.isfile(file_path):
@@ -23,6 +23,7 @@ class FileWriter:
     def write_to_new_or_existed_file(file_path: str, method: str, string_to_write: str):
         with open(file_path, method, encoding="utf-8") as file_to_write:
             print(string_to_write, file=file_to_write)
+
 
 
 
