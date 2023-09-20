@@ -1,6 +1,7 @@
 import os.path
-
 from hw_05_09.config import FILE_TO_WRITE_PATH
+from hw_05_09.CSVFiles.CSVOperations import CSVOperations
+# from hw_05_09.OperationsWithFiles.fileReader import FileReader
 
 
 class FileWriter:
@@ -15,6 +16,9 @@ class FileWriter:
             # else - open with creation of the file
             else:
                 FileWriter.write_to_new_or_existed_file(file_path, 'w', string_to_write)
+
+            CSVOperations.create_csv_files()
+
         except BaseException as exception:
             print("Exception occurs during writing file (FileOperations.write_to_file method)", exception)
 

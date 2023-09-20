@@ -1,5 +1,6 @@
 from hw_05_09.config import TITLE_LENGTH, SEPARATOR
 from hw_05_09.OperationsWithFiles.fileWriter import FileWriter
+# from hw_05_09.CSVFiles.CSVOperations import CSVOperations
 
 
 class Record:
@@ -32,4 +33,3 @@ class Record:
             return True     # return true
         else:           # if not
             return False    # return false
-

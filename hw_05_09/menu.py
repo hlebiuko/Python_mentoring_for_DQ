@@ -1,6 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
-from OperationsWithFiles.fileWriter import FileWriter
+# from OperationsWithFiles.fileWriter import FileWriter
 from DataTypes.news import News
 from DataTypes.privateAd import PrivateAd
 from DataTypes.joke import Joke
