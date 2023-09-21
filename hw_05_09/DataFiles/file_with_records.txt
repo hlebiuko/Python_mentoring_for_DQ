@@ -1,20 +1,30 @@
 News -------------------------
-Something happen - def
-Somewhere, 2023-09-12 12:48
+Something happen
+Somewhere, 2023-09-21 16:41
 ------------------------------
 
 News -------------------------
 Something happen
-Somewhere, 2023-09-20 13:58
+Somewhere, 2023-09-21 16:41
 ------------------------------
 
 News -------------------------
 Something happen
-Somewhere, 2023-09-20 15:27
+Somewhere, 2023-09-21 16:42
 ------------------------------
 
 News -------------------------
 Something happen
-Somewhere, 2023-09-20 16:23
+Somewhere, 2023-09-21 16:43
+------------------------------
+
+News -------------------------
+Something happen
+Somewhere, 2023-09-21 16:44
+------------------------------
+
+Private ad -------------------
+Garaz for sale!
+Actual until: 2023-09-28, 7 days left
 ------------------------------
 

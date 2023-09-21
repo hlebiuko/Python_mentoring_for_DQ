@@ -1,6 +1,5 @@
 import csv
 import re
-from hw_05_09.OperationsWithFiles.fileReader import FileReader
 from hw_05_09.config import DEFAULT_FILE_TO_CSV_WORDS_FILE, DEFAULT_FILE_TO_CSV_LETTERS_FILE, FILE_TO_WRITE_PATH
 
 
@@ -22,7 +21,7 @@ class CSVOperations:
     # function to create csv file with words and count of it's appearance
     @staticmethod
     def create_csv_with_words(dict_of_words: dict):
-        file_path = DEFAULT_FILE_TO_CSV_WORDS_FILE + '/words.csv'  # get path to file that will be created
+        file_path = DEFAULT_FILE_TO_CSV_WORDS_FILE  # get path to file that will be created
         try:  # error handler
             # open file to write
             with open(file_path, 'w', newline="", encoding="utf-8") as csv_file:
@@ -32,10 +31,11 @@ class CSVOperations:
         except BaseException as exception:  # exception handler
             print(exception)  # print appeared exception
 
+
     # function to create csv file with letters
     @staticmethod
     def create_csv_with_letters(list_of_dicts_with_letters: list):
-        file_path = DEFAULT_FILE_TO_CSV_LETTERS_FILE + '/letters.csv'  # get path to file that will be created
+        file_path = DEFAULT_FILE_TO_CSV_LETTERS_FILE  # get path to file that will be created
         fieldnames = ["letter", "count_all", "count_uppercase", "percentage"]  # list of headers
         try:  # error handler
             with open(file_path, 'w', newline="", encoding="utf-8") as csv_file:  # open file to write
@@ -50,6 +50,7 @@ class CSVOperations:
 
     @staticmethod
     def create_csv_files(file_path=FILE_TO_WRITE_PATH):
+        from hw_05_09.OperationsWithFiles.fileReader import FileReader
         records_list = FileReader.get_records_from_file(file_path)
         CSVOperations.create_csv_with_words(CSVOperations.get_dict_with_all_words_and_its_count_from_file(records_list))
         CSVOperations.create_csv_with_letters(CSVOperations.get_dict_of_all_letters_with_its_count_from_file(records_list))
