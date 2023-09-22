@@ -2,7 +2,6 @@ import csv
 import re
 from hw_05_09.config import DEFAULT_FILE_TO_CSV_WORDS_FILE, DEFAULT_FILE_TO_CSV_LETTERS_FILE, FILE_TO_WRITE_PATH
 
-
 """Calculate number of words and letters from previous Homeworks 5/6 output test file.
 
 Create two csv:
@@ -31,7 +30,6 @@ class CSVOperations:
         except BaseException as exception:  # exception handler
             print(exception)  # print appeared exception
 
-
     # function to create csv file with letters
     @staticmethod
     def create_csv_with_letters(list_of_dicts_with_letters: list):
@@ -53,7 +51,8 @@ class CSVOperations:
         from hw_05_09.OperationsWithFiles.fileReader import FileReader
         records_list = FileReader.get_records_from_file(file_path)
         CSVOperations.create_csv_with_words(CSVOperations.get_dict_with_all_words_and_its_count_from_file(records_list))
-        CSVOperations.create_csv_with_letters(CSVOperations.get_dict_of_all_letters_with_its_count_from_file(records_list))
+        CSVOperations.create_csv_with_letters(
+            CSVOperations.get_dict_of_all_letters_with_its_count_from_file(records_list))
 
     @staticmethod
     def get_dict_with_all_words_and_its_count_from_file(records_list: list) -> dict:
@@ -75,42 +74,25 @@ class CSVOperations:
         dict_of_letters = {}
         dict_of_capital_letters = {}
         separated_list_of_words = []
+        counter_of_all_letters = 0
         for record in records_list:
             separated_list_of_words.append(re.split(r'\W+', record))  # separating records to the words
         for list_of_words in separated_list_of_words:
             for word in list_of_words:
                 if word.isalpha():
                     for char in word:
+                        counter_of_all_letters += 1
                         if char.isupper():
-                            if char in dict_of_capital_letters:
-                                dict_of_capital_letters[char] += 1
-                            else:
-                                dict_of_capital_letters[char] = 1
-                        elif char in dict_of_letters:
-                            dict_of_letters[char] += 1
-                        else:
-                            dict_of_letters[char] = 1
+                            dict_of_capital_letters[char.lower()] = dict_of_capital_letters.get(char.lower(), 0) + 1
+                        dict_of_letters[char.lower()] = dict_of_letters.get(char.lower(), 0) + 1
 
         list_of_lists_of_records = []
-        lowercased_dict_of_capital_letters = {}
-        counter_of_all_letters = 0
-
-        for key in dict_of_capital_letters:
-            lowercased_dict_of_capital_letters[key.lower()] = dict_of_capital_letters[key]
-            if key.lower() in dict_of_letters:
-                dict_of_letters[key.lower()] += 1
-            else:
-                dict_of_letters[key.lower()] = 1
-            counter_of_all_letters += dict_of_capital_letters[key]
-
-        for key in dict_of_letters:
-            counter_of_all_letters += dict_of_letters[key]
 
         for key in dict_of_letters:
             sub_list = [key]
-            if key in lowercased_dict_of_capital_letters:
-                sub_list.append(dict_of_letters[key] + lowercased_dict_of_capital_letters[key])
-                sub_list.append(lowercased_dict_of_capital_letters[key])
+            if key in dict_of_capital_letters:
+                sub_list.append(dict_of_letters[key])
+                sub_list.append(dict_of_capital_letters[key])
             else:
                 sub_list.append(dict_of_letters[key])
                 sub_list.append(0)
