@@ -9,7 +9,6 @@ from hw_05_09.DataTypes.record import Record
 from datetime import datetime
 
 
-
 class FileReader:
     def __init__(self, input_file_path=DEFAULT_FILE_TO_READ_NEWS):
         self.input_file_path = input_file_path
@@ -48,9 +47,9 @@ class FileReader:
     # main function to write new records to the file, call other functions of the class inside
     def write_new_records_to_the_file(self):
         amount_of_records_to_write = self.get_amount_of_records_to_write(self.available_amount_records_to_read)
-        if len(self.unique_record_objs ) != 0 and amount_of_records_to_write != 0:
+        if len(self.unique_record_objs) != 0 and amount_of_records_to_write != 0:
             for x in range(amount_of_records_to_write):
-                self.unique_record_objs [x].write_to_file()
+                self.unique_record_objs[x].write_to_file()
             if amount_of_records_to_write == self.available_amount_records_to_read:  # if all records was written to the file
                 self.delete_file(self.input_file_path)  # remove file without unique records
         else:
