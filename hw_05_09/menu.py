@@ -5,7 +5,7 @@ from DataTypes.news import News
 from DataTypes.privateAd import PrivateAd
 from DataTypes.joke import Joke
 from OperationsWithFiles.fileReader import FileReader
-
+from JSONManager.JSONManager import JSONManager
 
 class Menu:
 
@@ -22,13 +22,16 @@ class Menu:
         while True:
             print("Main menu: \n"
                   "\t1. Generate records\n"
-                  "\t2. Read records from file\n"
+                  "\t2. Read records from text file\n"
+                  "\t3. Read records from JSON file\n"
                   "\t0. Exit\n")
             choice = Menu.get_console_input()
             if choice.find('generate') != -1 or choice == "1":
                 Menu.generate_records_menu()
-            elif choice.find("read") != -1 or choice == "2":
+            elif choice.find("read text") != -1 or choice == "2":
                 Menu.read_from_text_file_menu()
+            elif choice.find("json") != -1 or choice == "3":
+                Menu.read_from_json_file_menu()
             elif choice.find("exit") != -1 or choice == "0":
                 break
             else:
@@ -80,4 +83,27 @@ class Menu:
                 print("Incorrect input. Try again to type menu number (1/2/0) or type \'default\', "
                       "\'personal\' or \'back\'")
 
+    @staticmethod
+    def read_from_json_file_menu():
+        while True:  # loop until exit
+            print("Read from the default file or select another file?:\n"
+                  "\t1. Default file\n"
+                  "\t2. Personal file\n"
+                  "\t0. Back")
+            choice = Menu.get_console_input()
+            if choice.find("default") != -1 or choice == "1":
+                a = JSONManager()
+                a.get_json_file_data()
+                # file_to_read_default = FileReader()
+                # file_to_read_default.write_new_records_to_the_file()
+            elif choice.find("personal") != -1 or choice == "2":
+                file_to_read_personal = FileReader(FileReader.get_file_path('.json'))
+                # file_to_read_personal.write_new_records_to_the_file()
+            elif choice.find("back") != -1 or choice == "0":
+                break  # go to previous menu
+            else:  # if input was not recognized - try again
+                print("Incorrect input. Try again to type menu number (1/2/0) or type \'default\', "
+                      "\'personal\' or \'back\'")
+
+        pass
 
