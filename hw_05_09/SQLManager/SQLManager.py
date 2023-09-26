@@ -5,8 +5,8 @@ from datetime import datetime
 
 
 class SQLManager:
-    params_list_news = ['news_text TEXT', 'news_city TEXT', 'news_timestamp TEXT']
-    params_list_private_ad = ['ad_text TEXT', 'actual_until TEXT']
+    params_list_news = ['news_text TEXT', 'news_city TEXT', 'news_timestamp DATETIME']
+    params_list_private_ad = ['ad_text TEXT', 'actual_until DATE']
     params_list_joke = ['joke_text TEXT', 'joke_author TEXT']
 
     def __init__(self):
@@ -15,17 +15,15 @@ class SQLManager:
         self.params_list = []
 
     def create_table_if_not_exist(self, table_name: str, params_list: list):
-        params = '(id integer not null primary key autoincrement, ' + ', '.join(params_list) + ')'
-        create_table_text = "create table if not exists " + table_name + params
+        column_definitions = ', '.join(params_list)
+        create_table_text = f"CREATE TABLE IF NOT EXISTS {table_name} (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, {column_definitions})"
         self.cursor.execute(create_table_text)
         self.connection.commit()
 
     def write_obj_to_db(self, record_obj):
-        dict_of_params = list(record_obj.__dict__.items())
-        table_name = str(dict_of_params[0][1]).strip('-')
-        record_text = str(dict_of_params[1][1])
-        secondary_text = str(dict_of_params[2][1])
-        list_of_values = [record_text]
+        table_name = str(record_obj.title).strip('-')
+        secondary_text = str(record_obj.tech_text)
+        list_of_values = [str(record_obj.text)]
 
         if table_name == 'News ':
             self.create_table_if_not_exist(table_name, self.params_list_news)
@@ -48,15 +46,15 @@ class SQLManager:
             self.insert_for_table(table_name, self.params_list, list_of_values)
 
     def insert_for_table(self, table_name: str, params_list: list, values_list: list):
-        params = '(' + ', '.join([item.split(' ')[0] for item in params_list]) + ')'
+        params = ', '.join([item.split(' ')[0] for item in params_list])
         values = '(\"' + '\", \"'.join(values_list) + '\")'
-        insert_string = "insert into main." + table_name + params + ' values ' + values
+        insert_string = f"insert into main.{table_name} ({params}) values {values}"
         self.cursor.execute(insert_string)
         self.connection.commit()
 
     def select_all_record_from_db(self, table_name) -> list:
         list_of_object_from_db = []
-        self.cursor.execute('select * from main.' + table_name + ';')
+        self.cursor.execute(f'select * from main.{table_name};')
         records = self.cursor.fetchall()
         for record in records:
             if table_name == 'News ':
